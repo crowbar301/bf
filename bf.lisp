@@ -11,12 +11,12 @@
                  (#\- (vector (- (aref m 0) 1) (aref m 1) (aref m 2)))
                  (#\> (let ((n (aref m 2)))
                         (if n
-                          (vector (aref n 0) m (aref n 2))
-                          (vector 0 m nil))))
+                          (vector (aref n 0) (vector (aref m 0) (aref m 1) nil) (aref n 2))
+                          (vector 0 (vector (aref m 0) (aref m 1) nil) nil))))
                  (#\< (let ((p (aref m 1)))
                         (if p
-                          (vector (aref p 0) (aref p 1) m)
-                          (vector 0 nil m))))
+                          (vector (aref p 0) (aref p 1) (vector (aref m 0) nil (aref m 2)))
+                          (vector 0 nil (vector (aref m 0) nil (aref m 2))))))
                  (#\, (vector (char-code (read-char)) (aref m 1) (aref m 2)))
                  (#\. (princ (code-char (aref m 0))) m)
                  (t m))))))
